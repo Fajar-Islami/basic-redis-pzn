@@ -1,0 +1,18 @@
+## Universal Docker Compose
+version: '3.9'
+services:
+  redis_basic_1:
+    image: redis:latest
+    container_name: redis_basic_1
+    ports:
+      - 6379:6379
+
+  ## with config
+  redis_basic_2:
+    image: redis:latest
+    container_name: redis_basic_2
+    ports:
+      - 6379:6379
+    command: redis-server /usr/local/etc/redis/redis.conf # command redis untuk menunjukan lokasi confignya
+    volumes:
+      - ./config/redis.conf:/usr/local/etc/redis/redis.conf
