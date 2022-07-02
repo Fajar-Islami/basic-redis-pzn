@@ -84,13 +84,13 @@ Docker Compose : https://github.com/ProgrammerZamanNow/belajar-redis/blob/master
 Belajar Docker : https://www.youtube.com/playlist?list=PL-CtdCApEFH-A7jBmdertzbeACuQWvQao
 
 ```bash
-docker-compose -f redis-basic-compose.yaml up -d
+docker-compose -f 1-redis-basic-compose.yaml up -d
 ```
 
 untuk down nya
 
 ```bash
-docker-compose -f redis-basic-compose.yaml down
+docker-compose -f 1-redis-basic-compose.yaml down
 ```
 
 ### Redis Server vs Redis Cli
@@ -123,11 +123,39 @@ redis-cli -h localhost
 
 untuk mengecek terkoneksi dengan server, ketik `ping` di cli
 
-### 4 - Configuration
+## 4 - Configuration
 
 Saat menjalankan redis, redis tidak butuh file konfigurasi  
 Namun jika tidak menggunakan file konfigurasi, redis akan berjalan menggunakan konfigurasi default  
-Ada baiknya kita membuat file konfigurasi agar pengaturannya bisa diubah  
+Ada baiknya kita membuat file konfigurasi agar pengaturannya bisa diubah, seperti maksimal memori yang bisa digunakan.  
 https://github.com/antirez/redis/blob/6.0/redis.conf
 
 Docker Compose : https://github.com/ProgrammerZamanNow/belajar-redis/blob/master/redis-with-config/docker-compose.yaml
+
+> disesuaikan dengan versi nya
+
+docker-compose up
+
+```bash
+docker-compose -f 2-redis-basic-compose-with-config.yaml up -d
+```
+
+docker-compose down
+
+```bash
+docker-compose -f 2-redis-basic-compose-with-config.yaml down
+```
+
+## 5 - Database
+
+Redis memiliki konsep database seperti pada relational database mysql atau postgre  
+Di redis kita bisa membuat database dan menggunakan database nya  
+Namun sedikit berbeda, jika di relational database kita bisa membuat database dengan menggunakan nama database, di redis kita hanya bisa menggunakan angka sebagai database  
+Secara default database di redis adalah 0 (nol)  
+Kita bisa menggunakan database sejumlah maksimal sesuai dengan konfigurasi yang kita gunakan di file konfigurasi
+
+### Operasi Database
+
+| Operasi         | Keterangan                |
+| --------------- | ------------------------- |
+| select database | Selecting database number |
