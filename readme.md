@@ -154,8 +154,43 @@ Namun sedikit berbeda, jika di relational database kita bisa membuat database de
 Secara default database di redis adalah 0 (nol)  
 Kita bisa menggunakan database sejumlah maksimal sesuai dengan konfigurasi yang kita gunakan di file konfigurasi
 
+default nya di redis.conf, maksimal database yang ada 16 (mulai dari 0 sampai 15).
+rata-rata 1 aplikasi 1 redis aja.
+
 ### Operasi Database
 
 | Operasi         | Keterangan                |
 | --------------- | ------------------------- |
 | select database | Selecting database number |
+
+## 6 - Strings
+
+Redis sebenarnya mendukung struktur data yang banyak, seperti String, List, Set, dan lain-lain  
+Namun yang paling sering digunakan adalah struktur data String
+
+### Operasi Data String
+
+| Operasi           | Keterangan                               |
+| ----------------- | ---------------------------------------- |
+| set key value     | Set the string value of a key            |
+| get key           | Get the value of a key                   |
+| exists key        | Determine if a key exists                |
+| del key [key ...] | Delete a key                             |
+| append key value  | Append a value to a key                  |
+| keys pattern      | Find all keys matching the given pattern |
+
+### Operasi Range Data String
+
+| Operasi                   | Keterangan                                                         |
+| ------------------------- | ------------------------------------------------------------------ |
+| setrange key offset value | Overwrite part of a string at key starting at the specified offset |
+| getrange key start end    | Get a substring of the string stored at a key                      |
+
+### Operasi Multiple Data String
+
+| Operasi                        | Keterangan                           |
+| ------------------------------ | ------------------------------------ |
+| mget key [key ...]             | Get the values of all the given keys |
+| mset key value [key value ...] | Set multiple keys to multiple values |
+
+## 7 - Expiration
