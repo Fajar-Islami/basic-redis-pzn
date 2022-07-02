@@ -1,4 +1,7 @@
 ## Universal Docker Compose
+## to run specific service:
+## docker compose up -d <service-name>
+
 version: '3.9'
 services:
   redis_basic_1:
