@@ -329,3 +329,10 @@ Hal ini memudahkan kita untuk melihat daftar client, dan juga mengecek jika ada 
 | client kill ip:port | Kill the connection of a client                  |
 
 > ketika aplikasi disconnect di putus, maka aplikasi harus bisa melakukan reconnect ke redis.
+
+## 15 - Security
+
+Secara default, ketika kita menyalakan redis server, redis server akan mendengarkan request dari semua network interface. Ini sangat berbahaya, karena bisa jadi redis terekspos secara public  
+Namun, redis punya second layer untuk pengecekan koneksi, yaitu `mode protected`, secara default mode protectednya aktif, artinya walaupun redis bisa diakses dari manapun, tapi redis hanya mau menerima request dari 127.0.0.1 (localhost)
+
+> mode protected hanya ada di redis versi terbaru
