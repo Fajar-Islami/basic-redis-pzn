@@ -392,7 +392,7 @@ Namun kita bisa menyimpan data di memory redis tersebut di disk jika kita mau
 Namun perlu diingat `proses penyimpanan data ke disk redis tidak realtime`, dia dilakukan secara scheduler dengan konfigurasi tertentu  
 Jadi `jangan jadikan redis sebagai media penyimpanan persistence`, gunakan redis sebagai database untuk membantu database persistence lainnya
 
-ubah redis.conf
+ubah redis-acl.conf
 
 ```conf
 ################################ SNAPSHOTTING  ################################
@@ -417,3 +417,36 @@ persistence data secara manual
 | bgsave  | Asynchronously save the dataset to disk |
 
 > redis akan menyimpan semua data di redis ke harddisk
+
+## 19 - Eviction
+
+Ketika memory redis penuh, maka redis secara default akan `mereject semua request penyimpanan data`  
+Hal ini mungkin menjadi masalah ketika kita hanya menggunakan redis sebagai cache untuk media penyimpanan sementara  
+Kadang akan sangat berguna jika memory penuh, redis bisa secara otomatis menghapus data yang sudah jarang digunakan
+
+Redis mendukung fitur `eviction (menghapus data lama, dan menerima data baru)`  
+Namun untuk mengaktifkan fitur ini, kita perlu memberi tahu redis, `maximum memory` yang boleh digunakan, dan `bagaimana strategi` untuk melakukan eviction nya  
+https://redis.io/topics/lru-cache
+
+ubah redis-acl.conf
+
+```conf
+# Menentukan maksimal memory
+# maxmemory <bytes>
+maxmemory 100mb
+
+
+# Menentukan Memory Policy
+# volatile-lru -> Evict using approximated LRU, only keys with an expire set. (yang paling terakhir diakases akan dihapus kalau punya expire)
+# allkeys-lru -> Evict any key using approximated LRU. (LRU tidak peduli ada expire atau tidak akan dihapus)
+# volatile-lfu -> Evict using approximated LFU, only keys with an expire set. (mirip dengan volatile-lru, tapi ini yang jarang diakses)
+# allkeys-lfu -> Evict any key using approximated LFU. (menghapus yang paling jarang diakses)
+# volatile-random -> Remove a random key having an expire set. (hapus data di redis secara random yang punya expire set)
+# allkeys-random -> Remove a random key, any key. (hapus data random tidak peduli ada expire atau tidak)
+# volatile-ttl -> Remove the key with the nearest expire time (minor TTL, yang paling deket expire time nya akan dihapus)
+# noeviction -> Don't evict anything, just return an error on write operations. (default)
+#
+# LRU means Least Recently Used (yang paling terakhir diakases)
+# LFU means Least Frequently Used (yang paling jarang diakses)
+maxmemory-policy allkeys-lfu
+```
