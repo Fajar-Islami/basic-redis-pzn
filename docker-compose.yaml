@@ -19,3 +19,14 @@ services:
     command: redis-server /usr/local/etc/redis/redis.conf # command redis untuk menunjukan lokasi confignya
     volumes:
       - ./config/redis.conf:/usr/local/etc/redis/redis.conf
+
+  ## with command
+  redis_basic_3:
+    image: redis:latest
+    container_name: redis_basic_3
+    ports:
+      - 6379:6379
+    command: redis-server /usr/local/etc/redis/redis.conf # command redis untuk menunjukan lokasi confignya
+    volumes:
+      - ./config/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./command:/usr/local/etc/command

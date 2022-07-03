@@ -251,3 +251,18 @@ Redis memiliki fitur untuk menghapus seluruh data di database redis, yaitu opera
 | -------- | ----------------------------------------- |
 | flushdb  | Remove all keys from the current database |
 | flushall | Remove all keys from all databases        |
+
+## 10 - Pipeline
+
+Perintah yang dikirim dari client ke server redis menggunakan Request/Response protocol  
+Artinya tiap request yang dikirim ke server redis, maka redis akan membalasnya secara langsung  
+Kadang ada kebutuhan kita mengirim data ke redis dalam jumlah besar, misal ketika ada kasus memindahkan data dari database mysql ke redis  
+Jika kita mengirim satu per satu datanya, maka akan butuh waktu lama untuk selesai  
+Redis mendukung operasi bulk via pipeline, dimana kita bisa mengirim beberapa perintah sekaligus dalam satu request  
+Namun perlu diketahui, `server redis tidak akan membalas tiap perintah yang dikirim via pipeline`
+
+Operasi Pipeline Menggunakan Redis Cli
+
+```cli
+redis-cli --pipe
+```
