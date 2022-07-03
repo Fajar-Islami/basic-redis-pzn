@@ -197,3 +197,17 @@ Namun yang paling sering digunakan adalah struktur data String
 | mset key value [key value ...] | Set multiple keys to multiple values |
 
 ## 7 - Expiration
+
+Secara default saat kita menyimpan data ke redis, redis akan menyimpannya secara permanent sampai kita menghapusnya  
+Kadang kita mendapatkan kasus ingin menghapus data di redis secara otomatis dalam waktu tertentu  
+Misal kita menyimpan data cache di redis selama 10 menit, setelah 10 menit kita akan query ulang ke database untuk mendapatkan data terbaru  
+Hal ini bisa dilakukan di redis, redis memiliki fitur expiration secara otomatis pada data yang kita simpan di redis
+
+Operasi Expiration Data String
+| Operasi | Keterangan |
+| ------------------------------ | ------------------------------------ |
+| expire key seconds | Set a key's time to live in seconds |
+| setex key seconds value | Set the value and expiration of a key |
+| ttl key | Get the time to live for a key |
+
+> ttl = time to live
