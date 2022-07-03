@@ -384,3 +384,36 @@ mengecek daftar category yg ada di redis
 acl cat
 acl cat read # melihat isi category read
 ```
+
+## 18 - Persistence
+
+Media penyimpanan utama redis adalah di memory  
+Namun kita bisa menyimpan data di memory redis tersebut di disk jika kita mau  
+Namun perlu diingat `proses penyimpanan data ke disk redis tidak realtime`, dia dilakukan secara scheduler dengan konfigurasi tertentu  
+Jadi `jangan jadikan redis sebagai media penyimpanan persistence`, gunakan redis sebagai database untuk membantu database persistence lainnya
+
+ubah redis.conf
+
+```conf
+################################ SNAPSHOTTING  ################################
+# save <seconds> <changes>
+
+# save 3600 1
+# save 300 100
+# save 60 10000
+```
+
+> artinya redis akan melakukan save ke redis, jika terjadi perubahan data dalam waktu tertentu
+> redis itu single thread, jadi hati2 ketika melakukan persistence
+> kalau diprod sebaiknya tidak digunakan
+
+### Operasi Persistence
+
+persistence data secara manual
+
+| Operasi | Keterangan                              |
+| ------- | --------------------------------------- |
+| save    | Synchronously save the dataset to disk  |
+| bgsave  | Asynchronously save the dataset to disk |
+
+> redis akan menyimpan semua data di redis ke harddisk
