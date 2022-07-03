@@ -179,6 +179,9 @@ Namun yang paling sering digunakan adalah struktur data String
 | append key value  | Append a value to a key                  |
 | keys pattern      | Find all keys matching the given pattern |
 
+> di redis kalau menyimpan dengan key yang sama, maka dianggap update
+> key hanya bisa ambil satu saja, kayk banyak data gunakan keys pattern
+
 ### Operasi Range Data String
 
 | Operasi                   | Keterangan                                                         |
