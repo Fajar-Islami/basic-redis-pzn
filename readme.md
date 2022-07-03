@@ -297,3 +297,20 @@ Dengan fitur ini kita bisa mudah mendebug jika ternyata ada perintah yang salah 
 > walapun beda databse tetap dimunculkan
 > hanya mengembalikan `request`
 > untuk stop nya gunakan ctrl + c
+
+## 13 - Server Information
+
+Kadang kita butuh mendapatkan informasi dan statistik redis server  
+Seperti jumlah memory yang sudah terpakai, konfigurasi dan lain-lain  
+Redis memiliki fitur ini, sehingga kita sangat mudah untuk mendapat informasi server dan memonitor nya
+
+### Operasi Monitor
+
+| Operasi              | Keterangan                                      |
+| -------------------- | ----------------------------------------------- |
+| info                 | Get information and statistics about the server |
+| config <subcommand>  | Get the value of a configuration parameter      |
+| slowlog <subcommand> | Return top entries from the slowlog             |
+
+> tidak disarankan merubah config via cli, sebaiknya langsung di file config  
+> slowlog cocok digunakan untuk monitoring ,jadi bisa kirim email.
