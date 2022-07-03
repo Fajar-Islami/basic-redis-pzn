@@ -314,3 +314,18 @@ Redis memiliki fitur ini, sehingga kita sangat mudah untuk mendapat informasi se
 
 > tidak disarankan merubah config via cli, sebaiknya langsung di file config  
 > slowlog cocok digunakan untuk monitoring ,jadi bisa kirim email.
+
+## 14 - Client Connection
+
+Redis menyimpan semua informasi client di server  
+Hal ini memudahkan kita untuk melihat daftar client, dan juga mengecek jika ada anomali, seperti terlalu banyak koneksi client ke redis
+
+### Operasi Client Information
+
+| Operasi             | Keterangan                                       |
+| ------------------- | ------------------------------------------------ |
+| client list         | Get the list of client connections               |
+| client id           | Returns the client ID for the current connection |
+| client kill ip:port | Kill the connection of a client                  |
+
+> ketika aplikasi disconnect di putus, maka aplikasi harus bisa melakukan reconnect ke redis.
