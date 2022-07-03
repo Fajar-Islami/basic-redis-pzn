@@ -266,3 +266,18 @@ Operasi Pipeline Menggunakan Redis Cli
 ```cli
 redis-cli --pipe
 ```
+
+## 11- Transaction
+
+Seperti pada database relational, redis juga mendukung transaction  
+`Proses transaction adalah` proses dimana kita mengirimkan beberapa perintah, dan perintah tersebut akan dianggap sukses jika semua perintah sukses, jika gagal maka semua perintah harus dibatalkan
+
+| Operasi | Keterangan                              |
+| ------- | --------------------------------------- |
+| multi   | Mark the start of a transaction block   |
+| exec    | Execute all commands issued after MULTI |
+| discard | Discard all commands issued after MULTI |
+
+> multi ~ transaction  
+> exec ~ commit  
+> discrad ~ rollback
