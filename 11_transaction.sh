@@ -2,34 +2,13 @@
 docker exec -it redis_basic_3 bash
 
 redis-cli -h localhost
-set fajar fajar
-del fajar fajar
 
-# Transaction
-multi
-set fajar fajar
-set fajar2 ahmad2
-exec
-get fajar
+monitor # butuh 2 window
+
+set tes fajar
+set tes1 fajar1
 
 
-multi
-set fajar3 ahmad1
-set fajar4 ahmad4
-set fajar5
-exec # EXECABORT Transaction discarded because of previous errors.
-
-
-multi
-set fajar3 100000
-set ahmad1 100000
-set islami1 100000
-exec 
-
-
-# abort
-multi
-set a a
-set b b
-set c c
-discard
+# di monitor muncul
+# 1656824265.293446 [0 127.0.0.1:34464] "set" "tes" "fajar"
+# 1656824268.358355 [0 127.0.0.1:34464] "set" "tes1" "fajar1"

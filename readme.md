@@ -281,3 +281,19 @@ Seperti pada database relational, redis juga mendukung transaction
 > multi ~ transaction  
 > exec ~ commit  
 > discrad ~ rollback
+
+## 12 - Monitor
+
+Kadang ada kasus kita ingin mendebug aplikasi saat berkomunikasi dengan redis  
+Redis memiliki fitur monitor, yaitu fitur untuk `memonitor semua request yang masuk ke redis server`  
+Dengan fitur ini kita bisa mudah mendebug jika ternyata ada perintah yang salah yang dikirim oleh aplikasi kita ke redis server
+
+### Operasi Monitor
+
+| Operasi | Keterangan                                                  |
+| ------- | ----------------------------------------------------------- |
+| monitor | Listen for all requests received by the server in real time |
+
+> walapun beda databse tetap dimunculkan
+> hanya mengembalikan `request`
+> untuk stop nya gunakan ctrl + c
