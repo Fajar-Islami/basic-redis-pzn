@@ -227,13 +227,27 @@ Manual Increment & Decrement `(Tidak Aman)`
 > value = value + 1  
 > SET key value
 
-Operasi Increment & Decrement
-| Operasi | Keterangan |
-| ------------------------------ | ------------------------------------ |
-| incr key | Increment the integer value of a key by one |
-| decr key |Decrement the integer value of a key by one |
+### Operasi Increment & Decrement
+
+| Operasi              | Keterangan                                               |
+| -------------------- | -------------------------------------------------------- |
+| incr key             | Increment the integer value of a key by one              |
+| decr key             | Decrement the integer value of a key by one              |
 | incrby key increment | Increment the integer value of a key by the given amount |
 | decrby key decrement | Decrement the integer value of a key by the given number |
 
 > incrby & decrby, increment dan decrement bisa kita tentukan
 > program ini cocok kalau mau buat operasi kenaikan dan penurunan, agar tidak terjadi race condition
+
+## 9 - Flush
+
+Kadang kita butuh mengosongkan seluruh data di redis, misal ketika terjadi kesalahan kode sehingga menyebabkan data di redis salah  
+Menghapus data di redis satu-satu menggunakan operasi delete bukanlah hal yang bijak  
+Redis memiliki fitur untuk menghapus seluruh data di database redis, yaitu operasi flush
+
+### Operasi Flush
+
+| Operasi  | Keterangan                                |
+| -------- | ----------------------------------------- |
+| flushdb  | Remove all keys from the current database |
+| flushall | Remove all keys from all databases        |
