@@ -7,3 +7,5 @@ docker exec -it redis_client_5 bash
 redis-cli -h localhost
 redis-cli -h redis_basic_5
 
+# autentikasi
+auth fajar rahasia

@@ -351,3 +351,36 @@ di redis.conf tambahkan
 user default on +@connection # user default agar bisa melakukan koneksi
 user fajar on +@all >rahasia
 ```
+
+## 17 - Authorization
+
+Authorization adalah prose memberi hak akses terhadap identitas yang telah berhasil melewati proses authentication  
+Redis mendukung hal ini, jadi kita bisa membatasi hak akses apa saja yang bisa dilakukan oleh identitas yang kita buat  
+https://redis.io/topics/acl  
+https://redis.io/commands/acl-cat
+
+> di redis, kita bisa batasi keys apa saja yg bisa diakses  
+> `~` => artinya menentukan mengakses key yg mana
+> `~*` => akses semua key
+
+update redis-acl.conf
+
+```conf
+user default on +@connection # user default agar bisa melakukan koneksi
+user fajar on +@all ~* >rahasia # bisa menggunakan seluruh key dan seluruh operasi
+user ahmad on +@read ~* >rahasia # hanya bisa read
+user islami on +@read ~islami* >rahasia # hanya bisa read dengan key diawali islami
+```
+
+bisa juga
+
+```bash
+user fajar on +@all -@set ~* >rahasia # bisa menggunakan seluruh key dan seluruh operasi, kecuali operasi set
+```
+
+mengecek daftar category yg ada di redis
+
+```bash
+acl cat
+acl cat read # melihat isi category read
+```
