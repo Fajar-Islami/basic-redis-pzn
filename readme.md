@@ -211,3 +211,29 @@ Operasi Expiration Data String
 | ttl key | Get the time to live for a key |
 
 > ttl = time to live
+
+## 8 - Increment & Decrement
+
+Operasi Increment & Decrement sekilas sangat mudah dilakukan, hanya tinggal mengupdate data yang di redis dengan data baru (data lama ditambah 1)  
+Namun jika operasi dilakukan secara paralel dan dalam waktu yang sangat cepat, hal ini bisa memungkinkan `race condition`  
+Untungnya redis memiliki operasi untuk melakukan increment dan decrement
+
+> sebenarnya di redis tidak ada type number  
+> kalau mau menggunakan Increment & Decrement, maka pastikan value nya berupa number
+
+Manual Increment & Decrement `(Tidak Aman)`
+
+> value = GET key  
+> value = value + 1  
+> SET key value
+
+Operasi Increment & Decrement
+| Operasi | Keterangan |
+| ------------------------------ | ------------------------------------ |
+| incr key | Increment the integer value of a key by one |
+| decr key |Decrement the integer value of a key by one |
+| incrby key increment | Increment the integer value of a key by the given amount |
+| decrby key decrement | Decrement the integer value of a key by the given number |
+
+> incrby & decrby, increment dan decrement bisa kita tentukan
+> program ini cocok kalau mau buat operasi kenaikan dan penurunan, agar tidak terjadi race condition
