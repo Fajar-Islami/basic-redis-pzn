@@ -336,3 +336,18 @@ Secara default, ketika kita menyalakan redis server, redis server akan mendengar
 Namun, redis punya second layer untuk pengecekan koneksi, yaitu `mode protected`, secara default mode protectednya aktif, artinya walaupun redis bisa diakses dari manapun, tapi redis hanya mau menerima request dari 127.0.0.1 (localhost)
 
 > mode protected hanya ada di redis versi terbaru
+
+## 16 - Authentication
+
+Authentication adalah `proses verifikasi identitas` untuk memastikan bahwa yang mengakses adalah identitas yang benar  
+Redis memiliki fitur authentication, dan kita bisa menambahkannya di file konfigurasi di server redis  
+Namun perlu diingat, proses authentication di redis itu sangat cepat, jadi pastikan `gunakan password sepanjang` mungkin agar tidak mudah untuk di brute force
+
+> cara nya menambahkan konfigurasi user di `Redis ACL...`
+
+di redis.conf tambahkan
+
+```conf
+user default on +@connection # user default agar bisa melakukan koneksi
+user fajar on +@all >rahasia
+```

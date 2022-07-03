@@ -43,3 +43,17 @@ services:
   redis_client_4:
     container_name: redis_client_4
     image: redis:latest
+
+  ## with ACL
+  redis_basic_5:
+    image: redis:latest
+    container_name: redis_basic_5
+    ports:
+      - 6379:6379
+    command: redis-server /usr/local/etc/redis/redis.conf # command redis untuk menunjukan lokasi confignya
+    volumes:
+      - ./config/redis-acl.conf:/usr/local/etc/redis/redis.conf
+
+  redis_client_5:
+    container_name: redis_client_5
+    image: redis:latest
